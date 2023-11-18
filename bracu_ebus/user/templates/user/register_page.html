@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'user/css/register_page.css' %}">
+</head>
+<body>
+    <div class="page">
+        <div class="form-block">
+            <div class="head">
+                <p>Registration Form</p>
+            </div>
+            {% if msg %}
+                <p class="msg">*{{msg}}</p>
+            {% endif %}
+            <div class="body">
+                <form action="" method="post" novalidation>
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        <p class="label">{{ field.label }}</p>
+                        <p class="field">{{ field }}</p>
+                    {% endfor %}
+                    {% if error_msg %}
+                        <p class="error-msg">* {{error_msg}}</p>
+                    {% endif %}
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <p class="error-msg">* {{error}}</p>
+                        {% endfor %}
+                    {% endfor %}                        
+                    <input class="btn" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="bottom">
+                <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>{% comment %} 
+                <p>Don't have g-suit? <a href="{% url 'requestacc' %}">Request For An Account</a></p> {% endcomment %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

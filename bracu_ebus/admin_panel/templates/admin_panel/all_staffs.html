@@ -1,0 +1,40 @@
+{% extends "admin_panel/admin_base.html" %}
+{% load static %}
+{% block title %}Staff Page{% endblock title %}
+
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'admin_panel/all_users.css' %}">
+    <link rel="stylesheet" href="{% static 'admin_panel/all_staffs.css' %}">
+{% endblock cssfiles %}
+
+{% block content %}
+    <table>
+ 
+    <tr>
+    <th>User Name</th>
+    <th>Email</th>
+    <th>Action</th>
+    </tr>
+    
+    {% for staff in staffs %}
+        <tr>
+            <td>{{ staff.name }}</td>
+            <td>{{ staff.email }}</td>
+            <td>Action</td>
+        </tr>
+    {% endfor %}
+    {% if form %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <tr>
+                <td>{{ form.name }}</td>
+                <td class="email">{{ form.email }}</td>
+                <td><input class="submit" type="submit" value="Add"></td>
+            </tr>
+        </form>
+    {% endif %}
+    
+    
+    </table>
+   
+{% endblock content %}

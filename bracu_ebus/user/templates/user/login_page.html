@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'user/css/register_page.css' %}">
+</head>
+<body>
+    <div class="page">
+        <div class="form-block">
+            <div class="head">
+                <p>Login Form</p>
+            </div>
+            {% if msg %}
+                <p class="msg">*{{msg}}</p>
+            {% endif %}
+            <div class="body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <p class="label">{{ field.label }}</p>
+                        <p class="field">{{ field }}</p>
+                    {% endfor %}
+                    {% if error_msg %}
+                        <p class="error-msg">* {{error_msg}}</p>
+                    {% endif %}
+                    <input class="btn" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="bottom">
+                <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

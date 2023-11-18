@@ -1,0 +1,6 @@
+.field textarea {
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    background-color: rgb(195, 195, 195);
+}

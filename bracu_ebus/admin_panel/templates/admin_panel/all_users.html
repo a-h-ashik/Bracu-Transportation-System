@@ -1,0 +1,39 @@
+{% extends "admin_panel/admin_base.html" %}
+
+{% load static %}
+
+{% block title %}Users{% endblock title %}
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'admin_panel/all_users.css' %}">
+{% endblock cssfiles %}
+
+{% block content %}
+    <table>
+ 
+    <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Active Status</th>
+    <th>Points</th>
+    <th>Join Date</th>
+    </tr>
+    
+    {% for user in users %}
+        {% if not user.active %}
+            <tr>
+                <td>{{ user.user_id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.active }}</td>
+                <td>{{ user.point }}</td>
+                <td>{{ user.date_joined }}</td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+    
+    
+    </table>
+   
+{% endblock content %}
+

@@ -1,0 +1,7 @@
+.pass {
+    display: flex;
+}
+
+.submit, .email input {
+    min-width: 100%;
+}

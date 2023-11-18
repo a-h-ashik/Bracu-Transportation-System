@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request</title>
+    <link rel="stylesheet" href="{% static 'user_auth/css/registration_page.css' %}">
+    <link rel="stylesheet" href="{% static 'user_auth/css/request_account_page.css' %}">
+</head>
+<body>
+    <div class="page">
+        <div class="form-block">
+            <div class="head">
+                <p>Submit Request</p>
+            </div>
+            <div class="body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <p class="label">{{ field.label }}</p>
+                        <p class="field">{{ field }}</p>
+                    {% endfor %}
+                    {% if error_msg %}
+                        <p class="error-msg">* {{error_msg}}</p>
+                    {% endif %}
+                    <input class="btn" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="bottom">
+                <p>Go to login? <a href="{% url 'login' %}">Login</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
