@@ -5,35 +5,69 @@
 {% block title %}Users{% endblock title %}
 {% block cssfiles %}
     <link rel="stylesheet" href="{% static 'admin_panel/all_users.css' %}">
+    <style>
+        .form {
+            margin-bottom: 1rem;
+        }
+
+        .form td input {
+            width: 100%;
+        }
+    </style>
 {% endblock cssfiles %}
 
+{% block content_title %}User Management{% endblock content_title %}
+
 {% block content %}
-    <table>
- 
+
+<table class="form">
     <tr>
-    <th>#</th>
     <th>Name</th>
     <th>Email</th>
-    <th>Active Status</th>
-    <th>Points</th>
-    <th>Join Date</th>
+    <th>Action</th>
     </tr>
-    
-    {% for user in users %}
-        {% if not user.active %}
-            <tr>
-                <td>{{ user.user_id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.active }}</td>
-                <td>{{ user.point }}</td>
-                <td>{{ user.date_joined }}</td>
-            </tr>
-        {% endif %}
-    {% endfor %}
-    
-    
-    </table>
+
+    <form action="" method='post'>
+        {% csrf_token %}
+        <tr>
+            <td>{{ form.name }}</td>
+            <td>{{ form.email }}</td>
+            <td><input type="submit" value="Add"></td>
+        </tr>
+    </form>
+</table>
+
+
+<table>
+
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Email</th>
+<th>Active Status</th>
+<th>Points</th>
+<th>Join Date</th>
+<th>Action</th>
+</tr>
+
+{% for user in users %}
+    {% if not user.active %}
+        <tr>
+            <td>{{ user.user_id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.active }}</td>
+            <td>{{ user.point }}</td>
+            <td>{{ user.date_joined }}</td>
+            <td>
+            <a href="{% url 'delete_user' id=user.user_id %}">Delete</a>
+            </td>
+        </tr>
+    {% endif %}
+{% endfor %}
+
+
+</table>
    
 {% endblock content %}
 

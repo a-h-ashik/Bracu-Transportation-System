@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, LoginForm
-from .models import User, UserLoggedIn
+from .forms import RegistrationForm, LoginForm, AccountRequestForm
+from .models import User, UserLoggedIn, AccountRequestTable
 
 # Create your views here.
 def registration(request):
@@ -67,3 +67,18 @@ def logout(request, id):
         instance.delete()
         msg = "You are logged out"
     return redirect('login', msg=msg)
+
+
+def requestAccount(reqeust, msg=''):
+    fm = AccountRequestForm()
+    if reqeust.method == 'POST':
+        fm = AccountRequestForm(reqeust.POST)
+        if fm.is_valid():
+            name = fm['name'].value()
+            email = fm['email'].value()
+            description = fm['description'].value()
+            instance = AccountRequestTable(name=name, email=email, description=description)
+            instance.save()
+            msg = "Your request has been sent"
+
+    return render(reqeust, 'user/request_account_page.html', {'form':fm, 'msg':msg})

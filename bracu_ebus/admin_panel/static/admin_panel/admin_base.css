@@ -17,13 +17,16 @@ body {
     min-height: 10vh;
     display: flex;
     flex-direction: row;
-    background-color: rgba(235, 235, 235, 0.536);
+    background-color: rgba(3, 104, 181, 0.5);
     padding: 1rem 1rem;
 }
 
 .nav .panel_name {
     margin: 0;
     width: 80%;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
 }
 
 .nav .nav_links {
@@ -31,10 +34,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .nav .nav_links a {
     margin: 0 0.5rem;
+    text-decoration: none;
+    color: black;
 }
 
 .body {
@@ -53,14 +59,23 @@ body {
     margin: 0.2rem 0rem;
     padding-left: 1rem;
     text-decoration: none;
-    background-color: rgba(127, 255, 212, 0.251);
+    background-color: rgba(0, 0, 0, 0.25);
+    color: black;
 }
 
 .content {
     min-width: 84.3%;
     margin: 0.2rem 0.2rem;
     padding: 0.5rem 1rem;
-    background-color: rgba(0, 255, 255, 0.138);
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.content-title {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.25);
 }
 
 

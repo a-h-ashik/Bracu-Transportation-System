@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-</head>
-<body>
-    <h1>This is homepage</h1>
-    <h1>User {{user.name}} is logged in</h1>
-</body>
-</html>
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block title %}Homepage{% endblock title %}
+
+{% block content %}
+  {% comment %} Add Html codes here {% endcomment %}
+
+{% endblock content %}

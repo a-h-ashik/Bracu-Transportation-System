@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, AccountRequestTable
 
 class RegistrationForm(forms.ModelForm):
     password_again =  forms.CharField(widget=forms.PasswordInput)
@@ -13,3 +13,9 @@ class LoginForm(forms.ModelForm):
         model = User
         fields = ['email', 'password']
         widgets = {'password':forms.PasswordInput}
+        
+class AccountRequestForm(forms.ModelForm):
+    class Meta:
+        model = AccountRequestTable
+        fields = ['name', 'email', 'description']
+        widgets = {'description':forms.Textarea}

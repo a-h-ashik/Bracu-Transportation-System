@@ -1,0 +1,51 @@
+{% extends "admin_panel/admin_base.html" %}
+
+{% load static %}
+
+{% block title %}Users{% endblock title %}
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'admin_panel/all_users.css' %}">
+    <style>
+        .form {
+            margin-bottom: 1rem;
+        }
+
+        .form td input {
+            width: 100%;
+        }
+    </style>
+{% endblock cssfiles %}
+
+{% block content_title %}User Management{% endblock content_title %}
+
+{% block content %}
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Description</th>
+<th>Requested Date</th>
+<th>Action</th>
+</tr>
+
+{% for req in acc_requests %}
+    {% if not user.active %}
+        <tr>
+            <td>{{ req.name }}</td>
+            <td>{{ req.email }}</td>
+            <td>{{ req.description }}</td>
+            <td>{{ req.date_requested }}</td>
+            <td>
+                <a href="{% url 'delete_account_request' email=req.email %}">Delete</a>
+            </td>
+        </tr>
+    {% endif %}
+{% endfor %}
+
+
+</table>
+   
+{% endblock content %}
+

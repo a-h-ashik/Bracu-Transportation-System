@@ -14,7 +14,9 @@ def homePage(request, id=None, user_type=None):
                     # Write here if needed
 
 
-                    return render(request, 'homepage/home_page.html', {'user_type':'User', 'user':user})
+                    return render(request, 'homepage/home_page.html', {'user_type':'User', 'user':user, 'user_id':user.user_id})
                 else:
                     msg = "You are not logged in!"
                     return redirect('login', msg)
+            if user_type == 'Admin':
+                return render(request, 'homepage/home_page.html', {'user_type':'Admin', 'user':None, 'user_id':None})

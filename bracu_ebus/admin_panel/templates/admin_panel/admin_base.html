@@ -15,16 +15,20 @@
         <div class="nav">
             <a class="panel_name" href="{% url 'admin' %}">Admin Panel</a>
             <div class="nav_links">
-                <a href="">Home</a>
-                <a href="">Logout</a>
+                <a href="{% url 'homepage' id=None user_type='Admin' %}">Home</a>
+                <a href="{% url 'admin_logout' %}">Logout</a>
             </div>
         </div>
         <div class="body">
             <div class="side_nav">
                 <a href="{% url 'all_users' %}">Users</a>
-                <a href="{% url 'all_staffs' %}">Staff</a>
+                <a href="{% url 'all_staffs' %}">Staffs</a>
+                <a href="{% url 'all_account_requests' %}">Account Requests</a>
             </div>
             <div class="content">
+                <div class="content-title">
+                    {% block content_title %}{% endblock content_title %}
+                </div>
                 {% block content %}{% endblock content %}
             </div>
         </div>

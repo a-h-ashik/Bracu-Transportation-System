@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request</title>
-    <link rel="stylesheet" href="{% static 'user_auth/css/registration_page.css' %}">
-    <link rel="stylesheet" href="{% static 'user_auth/css/request_account_page.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/register_page.css' %}">
+    <link rel="stylesheet" href="{% static 'user/css/request_account_page.css' %}">
 </head>
 <body>
     <div class="page">
@@ -15,6 +15,9 @@
             <div class="head">
                 <p>Submit Request</p>
             </div>
+            {% if msg %}
+                <p class="msg">*{{msg}}</p>
+            {% endif %}
             <div class="body">
                 <form action="" method="post">
                     {% csrf_token %}

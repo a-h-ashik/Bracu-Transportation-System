@@ -13,3 +13,9 @@ class User(models.Model):
 class UserLoggedIn(models.Model):
     logged_id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     logged_date = models.DateTimeField(auto_now_add=True)
+
+class AccountRequestTable(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    email = models.EmailField(max_length=100, unique=True)
+    date_requested = models.DateField(auto_now_add=True)
+    description = models.CharField(max_length=200)
