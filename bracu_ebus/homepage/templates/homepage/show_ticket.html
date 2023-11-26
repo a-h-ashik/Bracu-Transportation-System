@@ -1,0 +1,30 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block title %}Ticket{% endblock title %}
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'homepage/ticket.css' %}">
+{% endblock cssfiles %}
+
+{% block content %}
+<div class="content">
+  <div class="ticket">
+    {% if ticket %}
+    <p class="card-title">General Ticket</p>
+    <div class="ticekt-info">
+        <p class="bus">Bus No: {{ticket.bus_number}}</p>
+        <p class="seat">Seat: {{ticket.seat_number}}</p>
+        <p class="date">Date: {{ticket.date}}</p>
+    </div>
+    <div class="owner">
+        <p class="title">------------------- Owner Info -------------------</p>
+        <p class="name">Name: {{user.name}}</p>
+        <p class="email">Email: {{user.email}}</p>
+    </div>
+    <a href="{% url 'cancel-ticket' id=user.user_id ticket_id=ticket.ticket_id %}">Cancel</a>
+    {% else %}
+    <p class="card-title">You did not buy a ticket.</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

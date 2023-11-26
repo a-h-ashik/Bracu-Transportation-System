@@ -1,0 +1,37 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block title %}Seeting Cart{% endblock title %}
+
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'ticket_booking/seating_cart.css' %}">
+{% endblock cssfiles %}
+
+{% block content %}
+    <div class="body">
+        <div class="cart">
+            <div class="left">
+                <a href="#">A1</a>
+
+            </div>
+            <div class="right">
+                
+                {% for seat, value in general_seats.items %}
+                    {% if value.booked %}
+                        <a href="#" class='red'>
+                            {{seat}}
+                        </a>
+                    {% else %}
+                        <a href="{% url 'booking-form' id=user.user_id bus_number=bus_number seat_number=seat %}" class='green'>
+                            {{seat}}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form">
+            {% block form %}
+                {% comment %} Contents {% endcomment %}
+            {% endblock form %}
+        </div>
+    </div>
+{% endblock content %}

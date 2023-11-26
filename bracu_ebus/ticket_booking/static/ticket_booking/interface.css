@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+ height: 83.15vh;
+ display: flex;
+ flex-direction: column;   
+ padding: 1rem;
+}
+
+.bus {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    color: black;
+    background-color: #ffed7c;
+    text-align: center;
+    text-decoration: none;
+}

@@ -5,6 +5,8 @@ from .models import Staff, Admin, AdminLoggedIn
 from user.models import User, AccountRequestTable
 from user.forms import RegistrationForm
 
+from ticket_booking.models import Buses
+
 # Additional functions
 
 
@@ -70,7 +72,7 @@ def staffTable(request):
         email = fm['email'].value()
         if fm.is_valid():
             total_staff = Staff.objects.all().count()
-            staff_id = f'#{total_staff+1}'
+            staff_id = f'S{total_staff+1}'
             instance = Staff(staff_id=staff_id, name=name, email=email)
             instance.save()
     staffs = Staff.objects.all()
@@ -91,3 +93,8 @@ def deleteAccountRequest(request, email):
     instance = AccountRequestTable.objects.filter(email=email)
     instance.delete()
     return redirect('all_account_requests')
+
+
+def busTable(request):
+    buses = Buses.objects.all()
+    return render(request, 'admin_panel/routes.html', {'buses':buses})

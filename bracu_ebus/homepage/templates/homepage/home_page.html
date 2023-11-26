@@ -1,8 +1,38 @@
 {% extends "homepage/base.html" %}
 {% load static %}
 {% block title %}Homepage{% endblock title %}
+{% block cssfiles %}
+  <link rel="stylesheet" href="{% static 'admin_panel/all_users.css' %}">
+  <link rel="stylesheet" href="{% static 'homepage/homepage.css' %}">
+{% endblock cssfiles %}
 
 {% block content %}
-  {% comment %} Add Html codes here {% endcomment %}
-
+  <div class="body">
+    <div class="route-container">
+      <p class="container-title">Routes</p>
+      <div class="route-table">
+        <table>
+          <tr>
+          <th>Bus No</th>
+          <th>Start</th>
+          <th>D1</th>
+          <th>D2</th>
+          <th>D3</th>
+          <th>End</th>
+          </tr>
+          
+          {% for bus in buses %}
+              <tr>
+                  <td>{{ bus.bus_number }}</td>
+                  <td>{{ bus.d1 }}</td>
+                  <td>{{ bus.d2 }}</td>
+                  <td>{{ bus.d3 }}</td>
+                  <td>{{ bus.d4 }}</td>
+                  <td>{{ bus.d5 }}</td>
+              </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
 {% endblock content %}

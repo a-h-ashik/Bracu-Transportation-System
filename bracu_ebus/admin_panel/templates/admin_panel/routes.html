@@ -1,0 +1,37 @@
+{% extends "admin_panel/admin_base.html" %}
+{% load static %}
+{% block title %}Staff Page{% endblock title %}
+
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'admin_panel/all_users.css' %}">
+{% endblock cssfiles %}
+
+{% block content_title %}Route Management{% endblock content_title %}
+
+{% block content %}
+    <table>
+ 
+    <tr>
+    <th>Bus No</th>
+    <th>Start</th>
+    <th>D1</th>
+    <th>D2</th>
+    <th>D3</th>
+    <th>End</th>
+    <th>Action</th>
+    </tr>
+    
+    {% for bus in buses %}
+        <tr>
+            <td>{{ bus.bus_number }}</td>
+            <td>{{ bus.d1 }}</td>
+            <td>{{ bus.d2 }}</td>
+            <td>{{ bus.d3 }}</td>
+            <td>{{ bus.d4 }}</td>
+            <td>{{ bus.d5 }}</td>
+            <td><a href="#">Delete</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+   
+{% endblock content %}

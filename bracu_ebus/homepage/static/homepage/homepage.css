@@ -1,0 +1,15 @@
+.body {
+    padding: 0 1rem;
+}
+
+.route-container {
+    padding: 1rem 1rem 3rem 1rem;
+    background-color: #c0fee9;
+}
+
+p.container-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+}
+

@@ -1,0 +1,14 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block title %}Buses{% endblock title %}
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'ticket_booking/interface.css' %}">
+{% endblock cssfiles %}
+
+{% block content %}
+    <div class="body">
+        {% for bus in buses %}
+            <a class="bus" href="{% url 'cart' id=user.user_id bus_number=bus.bus_number %}">Bus {{bus.bus_number}}</a>
+        {% endfor %}
+    </div>
+{% endblock content %}

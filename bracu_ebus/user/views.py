@@ -51,7 +51,7 @@ def login(request, msg=''):
                 if not UserLoggedIn.objects.filter(logged_id=user).exists():
                     instance = UserLoggedIn(logged_id=user)
                     instance.save()
-                return redirect('homepage', id=user.user_id, user_type='User')
+                return redirect('homepage', id=user.user_id)
             else:
                 msg = 'Incorrect password'
             

@@ -1,0 +1,20 @@
+{% extends "ticket_booking/base.html" %}
+{% load static %}
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'ticket_booking/seating_cart.css' %}">
+    <link rel="stylesheet" href="{% static 'ticket_booking/booking_form.css' %}">
+{% endblock cssfiles %}
+
+{% block form %}
+    <p class="form-heading">Book</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="lname">Name:</label><br>
+        <input type="text" name="name" id="lname" value="{{user.name}}"><br>
+        <label for="lemail">Email:</label><br>
+        <input type="email" name="email" id="lemail" value="{{user.email}}"><br>
+        <label for="lseat">Seat Number:</label><br>
+        <input type="text" name="seat" id="lseat" value="{{seat_number}}"><br><br>
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock form %}

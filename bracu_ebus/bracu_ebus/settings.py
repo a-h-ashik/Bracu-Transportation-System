@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'admin_panel',
-    'homepage'
+    'homepage',
+    'ticket_booking',
 ]
 
 MIDDLEWARE = [
