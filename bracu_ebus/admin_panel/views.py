@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .forms import CreateStaffForm, AdminLoginForm
+from .forms import CreateStaffForm, AdminLoginForm, RouteCreationForm
 from .models import Staff, Admin, AdminLoggedIn
 from user.models import User, AccountRequestTable
 from user.forms import RegistrationForm
@@ -97,4 +97,17 @@ def deleteAccountRequest(request, email):
 
 def busTable(request):
     buses = Buses.objects.all()
-    return render(request, 'admin_panel/routes.html', {'buses':buses})
+    fm = RouteCreationForm()
+
+    if request.method == 'POST':
+        instance = Buses(bus_number=request.POST.get('bus_number'),
+                         d1=request.POST.get('d1'),
+                         d2=request.POST.get('d2'),
+                         d3=request.POST.get('d3'),
+                         d4=request.POST.get('d4'),
+                         d5=request.POST.get('d5'),
+                         active=True)
+
+        instance.save()
+        return redirect('all_routes')
+    return render(request, 'admin_panel/routes.html', {'buses':buses, 'form':fm})

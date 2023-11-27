@@ -17,7 +17,8 @@ def seating_cart(request, id, bus_number):
         else:
             key = f'G{i}'
 
-        booked = Tickets.objects.filter(seat_number=key).exists()
+        seats = Tickets.objects.filter(bus_number=bus_number)
+        booked = seats.filter(seat_number=key).exists()
         if booked:
             general_seats[key] = {'booked': True}
         else:
