@@ -5,7 +5,7 @@ from .models import User, UserLoggedIn, AccountRequestTable
 # Create your views here.
 def registration(request):
     fm = RegistrationForm()
-
+    error_msg = ""
     if request.method == 'POST':
         fm = RegistrationForm(request.POST)
         if fm.is_valid():
@@ -14,17 +14,18 @@ def registration(request):
             password = fm['password'].value()
 
             # Validation Needed
-            # -----------------
+            if "@g.bracu.ac.bd" not in email:
+                error_msg = "Please use a g-suit account"
+            else:
+                # Saving the data
+                count = User.objects.all().count()
+                user_id = f'U{count+1}'
+                instance = User(user_id=user_id, name=name, email=email, password=password)
+                instance.save()
+                msg = 'Your account is created successfully'
+                return redirect('login', msg)
 
-            # Saving the data
-            count = User.objects.all().count()
-            user_id = f'U{count+1}'
-            instance = User(user_id=user_id, name=name, email=email, password=password)
-            instance.save()
-            msg = 'Your account is created successfully'
-            return redirect('login', msg)
-
-    return render(request, 'user/register_page.html', {'form':fm})
+    return render(request, 'user/register_page.html', {'form':fm, 'error_msg':error_msg})
 
 
 def login(request, msg=''):

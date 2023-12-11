@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" /> 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'payment/nav.css' %}">
+    
+</head>
+<!-- footer css/style-->
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  .content {
+    padding-bottom: 30px; /* Adjusted padding for a smaller footer height */
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #2ecc71;
+    color: white;
+    text-align: center;
+    padding: 5px; /* Adjusted padding for a smaller footer height */
+    z-index: 1000;
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+  }
+
+  .icons i {
+    font-size: 20px;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .icons i:hover {
+    transform: scale(1.2);
+  }
+
+  .facebook-icon {
+    color: #1877f2;
+  }
+
+  .twitter-icon {
+    color: #1da1f2;
+  }
+
+  .youtube-icon {
+    color: #ff0000;
+  }
+
+  .instagram-icon {
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
+  }
+
+  .linkedin-icon {
+    color: #0077b5;
+  }
+
+  .footer img {
+    max-width: 80px;
+    margin-top: 5px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+</style>
+
+<!-- navbar copy -->
+<body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">eBUS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url "homepage" %}">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Book Ticket</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Your Ticket</a>
+            </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Actions
+                </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Notification</a></li>
+                    <li><a class="dropdown-item" href="#">Report Lost Item</a></li>
+                    <li><a class="dropdown-item" href="#">show Points</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <a class="dropdown-item" href="#">Logout</a>
+                    </li>
+                  </ul>
+              </li>
+            </ul>
+              <div class="welcome">welcome, {{ user.name }}</div>
+              <div class="points">Point: {{ user.point }}</div>
+          </div>
+        </div>
+      </nav>
+
+      {% block content %}{% endblock content %} <br><br><br><br><br><br>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<!-- footer -->
+
+<div class="footer">
+  <p>
+    <div class="icons">
+      <div class="icon">
+        <i class="fab fa-facebook-f facebook-icon"></i>
+      </div>
+      <div class="icon">
+        <i class="fab fa-twitter twitter-icon"></i>
+      </div>
+      <div class="icon">
+        <i class="fab fa-youtube youtube-icon"></i>
+      </div>
+      <div class="icon">
+        <i class="fab fa-instagram instagram-icon"></i>
+      </div>
+      <div class="icon">
+        <i class="fab fa-linkedin linkedin-icon"></i>
+      </div>
+    </div>
+    <img src="{% static 'images/braculogo.png' %}" alt="Your Real Logo"> <!-- Replace with the actual path or URL of the logo -->
+    <br>
+    <span>&copy; 2023 Bracu E-Bus System | All Rights Reserved</span>
+  </p>
+</div>
+
+
+
+</body>
+</html>

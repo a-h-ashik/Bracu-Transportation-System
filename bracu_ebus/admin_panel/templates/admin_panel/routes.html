@@ -36,7 +36,7 @@
             <td>{{ bus.d4 }}</td>
             <td>{{ bus.d5 }}</td>
             <td>{{ bus.active }}</td>
-            <td><a href="#">Delete</a></td>
+            <td><a href="{% url 'delete_bus' id=bus.bus_number %}">Delete</a></td>
         </tr>
     {% endfor %}
 

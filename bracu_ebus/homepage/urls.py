@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import homePage, ticketPage, cancelTicket
+from .views import homePage, ticketPage, cancelTicket, showpoints,itemshow,complainshow
+
 
 urlpatterns = [
     # Urls added by ashik
@@ -8,4 +9,7 @@ urlpatterns = [
     path('ticket/<id>', ticketPage, name="ticket"),
     path('cancel-ticket/<id>/<ticket_id>', cancelTicket, name="cancel-ticket"),
 
+    path('showpoints/<id>', showpoints, name="showpoints"),
+    path('lostitem/<id>', itemshow, name="lostitem"),
+    path('complainshow/', complainshow, name="complainshow"),
 ]

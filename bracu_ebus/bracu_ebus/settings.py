@@ -9,7 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-r&6!a8s*g6agv7azr!-y@bz@1!vvt$70rgd6b#p!182t9z%9%_'
-
+STRIPE_SECRET_KEY = 'sk_test_51OIDa8SCfK43CzkYd1GxiEMtQxanJC2v0FOYrWlw75jnwGnlVa8FcJ0hbMyusU5th5Oph5kdmcjWbgg7SFO4w2YH00qPnLSoZu'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51OIDa8SCfK43CzkYdBwwWnhtIwDAsA4Is6ahVlO01BwkNB6k9ya26LjdM57CpHIuIIN5Kd3eCGtGzhMjUMbsq6xv0068z8QgWU'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -29,6 +30,8 @@ INSTALLED_APPS = [
     'admin_panel',
     'homepage',
     'ticket_booking',
+    'stuff_panel',
+    'payment', #my
 ]
 
 MIDDLEWARE = [

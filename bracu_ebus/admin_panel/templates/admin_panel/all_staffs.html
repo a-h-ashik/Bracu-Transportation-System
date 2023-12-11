@@ -1,42 +1,67 @@
 {% extends "admin_panel/admin_base.html" %}
 {% load static %}
 {% block title %}Staff Page{% endblock title %}
-
+<!--myPage-->
 {% block cssfiles %}
     <link rel="stylesheet" href="{% static 'admin_panel/all_users.css' %}">
-    <link rel="stylesheet" href="{% static 'admin_panel/all_staffs.css' %}">
+    <style>
+        .form {
+            margin-bottom: 1rem;
+        }
+
+        .form td input {
+            width: 100%;
+        }
+    </style>
 {% endblock cssfiles %}
 
 {% block content_title %}Staff Management{% endblock content_title %}
 
 {% block content %}
-    <table>
+
+<table class="form">
+    <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Action</th>
+    </tr>
+
+    <form action="" method='post'>
+        {% csrf_token %}
+        <tr>
+            <td>{{ form.name }}</td>
+            <td>{{ form.email }}</td>
+            <td><input type="submit" value="Add"></td>
+        </tr>
+    </form>
+</table>
+
+
+<table>
  
     <tr>
-    <th>User Name</th>
+    <th>Staff ID</th>
+    <th>Name</th>
     <th>Email</th>
+    <th>Active Status</th>
+    <th>Join Date</th>
     <th>Action</th>
     </tr>
     
     {% for staff in staffs %}
+        {% if not user.active %}
         <tr>
+            <td>{{ staff.staff_id }}</td>
             <td>{{ staff.name }}</td>
             <td>{{ staff.email }}</td>
-            <td>Action</td>
+            <td>{{ staff.active }}</td>
+            <td>{{ staff.date_joined }}</td>
+            <td>
+            <a href="{% url 'delete_staff' id=staff.staff_id %}">Delete</a>
+            </td>
         </tr>
+        {% endif %}
     {% endfor %}
-    {% if form %}
-        <form action="" method="post">
-            {% csrf_token %}
-            <tr>
-                <td>{{ form.name }}</td>
-                <td class="email">{{ form.email }}</td>
-                <td><input class="submit" type="submit" value="Add"></td>
-            </tr>
-        </form>
-    {% endif %}
-    
-    
-    </table>
-   
+</table>
+
 {% endblock content %}

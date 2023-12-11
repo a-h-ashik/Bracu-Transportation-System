@@ -15,6 +15,14 @@ class Staff(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, unique=True)
     password = models.CharField(max_length=100, default="0000")
+    #my
+    date_joined = models.DateField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+#my
+class StaffLoggedIn(models.Model):
+    logged_id = models.OneToOneField(Staff, on_delete=models.CASCADE, primary_key=True)
+    logged_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name

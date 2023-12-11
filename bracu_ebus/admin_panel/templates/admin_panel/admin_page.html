@@ -1,7 +1,88 @@
 {% extends "admin_panel/admin_base.html" %}
-
+{% load static %}
 {% block title %}Admin Page{% endblock title %}
 
-{% block content_title %}Statictics{% endblock content_title %}
+{% block cssfiles %}
+    <link rel="stylesheet" href="{% static 'admin_panel/all_users.css' %}">
+    <link rel="stylesheet" href="{% static 'admin_panel/all_staffs.css' %}">
 
-{% block content %}Content will be added{% endblock content %}
+{% endblock cssfiles %}
+
+{% block content_title %}Statictics{% endblock content_title %}
+<!--my page-->
+{% block content %}
+
+<div>
+    <table>
+        <h2>Winner User</h2>
+        <tr>
+            <th>User ID</th>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>Total Tickets</th>
+            <th>Bonus</th>
+        </tr>
+        <tr>
+            <td>{{ max_ticket_buyer.user_id }}</td>
+            <td>{{ user_details.name }}</td>
+            <td>{{ user_details.email }}</td>
+            <td>{{ max_ticket_buyer.total_tickets }}</td>
+            <td>
+                <strong>
+                {% if bonus_added %}
+                    <a style="text-decoration-color: red;" href="{% url 'admin_add_points' user_id=max_ticket_buyer.user_id %}">Add 50 Points</a>
+                {% else %}
+                    <a style="text-decoration-color: blue;" href="{% url 'admin_add_points' user_id=max_ticket_buyer.user_id %}">Add 50 Points</a>
+                {% endif %}
+                </strong>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+<div>
+    <table>
+        <h2>Summary</h2>
+        <tr>
+            <th>Content</th>
+            <th>Result</th>
+        </tr>
+        <tr>
+            <td>Total booked tickets:</td>
+            <td>{{ total_tickets }}</td>
+        </tr>
+        <tr>
+            <td>Total number of available buses/routes:</td>
+            <td>{{ total_available_buses }}</td>
+        </tr>
+        <tr>
+            <td>Total number of users:</td>
+            <td>{{ total_users }}</td>
+        </tr>
+        <tr>
+            <td>Total number of staff members:</td>
+            <td>{{ total_staff_members }}</td>
+        </tr>
+    </table>
+</div><br>
+<div>
+    <h2>Weekly User Registrations</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Registrations</th>
+            </tr>
+            {% for entry in users_date_joined %}
+                <tr>
+                    <td>{{ entry.joined_day }}</td>
+                    <td>{{ entry.count }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td><strong>Total users</strong></td>
+                <td><strong>{{ total_users_count }}</strong></td>
+            </tr>
+        </table>
+</div>
+
+{% endblock content %}

@@ -5,11 +5,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'homepage/nav.css' %}">
     {% block cssfiles %}{% endblock cssfiles %}
 </head>
+<!-- footer css -->
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #2ecc71; /* Updated to a lighter green color */
+    color: white;
+    text-align: center;
+    padding: 1px; /* Adjusted padding for smaller height */
+    position: relative; /* Added relative position to establish a positioning context for absolute positioning */
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center icons horizontally */
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 50%; /* Creates a circular shape */
+    width: 40px; /* Adjust the size of the circle */
+    height: 40px; /* Adjust the size of the circle */
+    margin: 0 5px; /* Adjusted margin for spacing between icons */
+  }
+
+  .icons i {
+    font-size: 20px; /* Adjusted icon size */
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .icons i:hover {
+    transform: scale(1.2); /* Scale-up effect on hover */
+  }
+
+  .facebook-icon {
+    color: #1877f2; /* Facebook blue color */
+  }
+
+  .twitter-icon {
+    color: #1da1f2; /* Twitter blue color */
+  }
+
+  .youtube-icon {
+    color: #ff0000; /* YouTube red color */
+  }
+
+  .instagram-icon {
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); /* Instagram gradient */
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .linkedin-icon {
+    color: #0077b5; /* LinkedIn blue color */
+  }
+
+  .footer img {
+    max-width: 80px; /* Adjust the maximum width of the logo */
+    margin-top: 5px; /* Adjusted margin for smaller spacing */
+    position: absolute; /* Set position to absolute */
+    top: 5px; /* Adjust top position */
+    right: 10px; /* Adjust right position */
+  }
+</style>
+
+
 <body>
+  <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">eBUS</a>
@@ -32,9 +112,9 @@
                   Actions
                 </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Notification</a></li>
-                    <li><a class="dropdown-item" href="#">Report Lost Item</a></li>
-                    <li><a class="dropdown-item" href="#">Add Points</a></li>
+                    <li><a class="dropdown-item" href="{% url 'givenotification' id=user.user_id  %}">Notification</a></li>
+                    <li><a class="dropdown-item" href="{% url 'lostitem' id=user.user_id %}">Report Lost Item</a></li>
+                    <li><a class="dropdown-item" href="{% url 'showpoints' id=user.user_id  %}">show Points</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
                       <a class="dropdown-item" href="{% url 'logout' id=user.user_id %}">Logout</a>
@@ -51,5 +131,35 @@
       {% block content %}{% endblock content %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <!-- footer -->
+
+    <div class="footer">
+      <p>
+        <div class="icons">
+          <div class="icon">
+            <i class="fab fa-facebook-f facebook-icon"></i>
+          </div>
+          <div class="icon">
+            <i class="fab fa-twitter twitter-icon"></i>
+          </div>
+          <div class="icon">
+            <i class="fab fa-youtube youtube-icon"></i>
+          </div>
+          <div class="icon">
+            <i class="fab fa-instagram instagram-icon"></i>
+          </div>
+          <div class="icon">
+            <i class="fab fa-linkedin linkedin-icon"></i>
+          </div>
+        </div>
+        <img src="{% static 'images/braculogo.png' %}" alt="Your Real Logo"> <!-- Replace with the actual path or URL of the logo -->
+        <br>
+        <span>&copy; 2023 Bracu E-Bus System | All Rights Reserved</span>
+      </p>
+    </div>
+
+
 </body>
 </html>

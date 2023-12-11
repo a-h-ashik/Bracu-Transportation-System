@@ -17,3 +17,9 @@ class Tickets(models.Model):
     user_id = models.CharField(max_length=50)
     date = models.DateField(auto_now_add=True)
 
+class Subscriptions(models.Model):
+    sub_id = models.CharField(primary_key=True, max_length=50)
+    bus_number = models.IntegerField()
+    seat_number = models.CharField(max_length=5)
+    user_id = models.CharField(max_length=50)
+    date = models.DateField(auto_now_add=True)

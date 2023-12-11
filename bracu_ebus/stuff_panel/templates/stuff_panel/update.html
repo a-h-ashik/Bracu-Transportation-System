@@ -1,0 +1,21 @@
+{% extends 'stuff_panel/base.html' %}
+
+{% block content %} 
+
+    <div class="row">
+        <div class="col-sm-8">
+
+            <h4 class="text-center alert alert-info"> Update information </h4>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class="btn btn-success" value="Update">
+                <a href="{% url 'addandshow' %}" class="btn btn-info">Back To Home</a>
+            </form>
+        </div>
+    </div>
+
+
+
+{% endblock content %}
+

@@ -1,0 +1,80 @@
+{% extends 'stuff_panel/base.html' %}
+
+{% block content %} 
+<div class="row">
+
+    <div class="col-sm-4">
+
+        <h4 class="text-center alert alert-info"> Add new Offer </h4>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-success" value="Add">
+        </form>
+    
+    </div>
+
+
+         <!--                 -->
+
+
+    <div class="col-sm-8">
+
+        <h4 class="text-center alert alert-info"> Show All Offers </h4>
+        {% if alldata %}
+            <!-- table structure from bootstrao-->
+
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Offer</th>
+                    <th scope="col">Offer Duration</th>
+                    <th scope="col">Action</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in alldata %}
+                  <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.offer_name}}</td>
+                    <td>{{i.duration_date}}</td>
+
+                    <td>
+                    <a href="{% url 'updatedata' i.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    
+                    <form action="{% url 'deletedata' i.id %}" method="POST" class="d-inline"> {% csrf_token %}
+                
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </form>
+                    
+
+
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  
+                  
+                </tbody>
+              </table>
+
+
+
+
+
+
+
+            
+        {% else %}
+            <h4 class="text-center alert alert-warning"> No Records </h4>
+        
+        {% endif %}
+    </div>
+
+</div>    
+{% endblock content %}
+
+
+
+

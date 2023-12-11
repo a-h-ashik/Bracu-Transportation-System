@@ -1,0 +1,45 @@
+{% extends "payment/base.html" %}
+{% block title %}{% endblock title %}
+{% block content %}
+
+<style>
+     .rootStyle{
+     text-align:center;
+     }
+     .combinedForm {
+        margin-top: 20px;
+    }
+</style>
+
+
+
+<div class="rootStyle">
+    <p ></p>
+    <h2 class="text-center alert-danger"> Payment for Subscription</h2>
+    <br ></br>
+</div>
+<div class="combinedForm text-center">
+
+    <div class="col-sm-12">
+      <h4 class="text-center alert alert-info"> Add your information </h4>
+    
+        <form action="{% url 'charge' %}" method="post">
+            {% csrf_token %}
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{ key }}"
+                data-description="Payment Gateway"
+                data-amount="500"
+                data-locate="auto">
+            </script>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

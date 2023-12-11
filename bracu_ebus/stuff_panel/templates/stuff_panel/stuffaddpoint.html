@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+    initial_scale=1.0">
+    <title></title>
+ 
+
+    <link rel="stylesheet" href="{% static 'stuff_panel/css/bootstrap.css' %}">
+
+</head>
+<body>
+
+
+
+
+         <!--            NabBer start           --> 
+
+         <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'addandshow'  %}">Stuff_panel</a>   
+                  </li>
+          
+                  <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="{% url 'complainshow'  %}">View Complain</a>
+                  </li>
+          
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'shownotificationform'  %}">Give notification to user</a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'stuffaddpoint'  %}">Add Points</a>
+                  </li>
+
+              </div>
+            </div>
+          </nav>
+      
+                             <!--            NabBer end           --> 
+
+{% block content %}
+          {% load static %}
+          {% block title %}{% endblock title %}
+
+          <p ></p>
+          <h2 class="text-center alert-danger"> Add Points </h2>
+          <br ></br>
+      <div class="row"> 
+        <div class="col-sm-4">
+              <h4 class="text-center alert alert-info"> Add information </h4>
+          
+          <form action="" method="Post" novalidate>
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-success" value="Add">
+          </form>
+        </div>
+          <br><br>
+
+
+
+
+{% comment %}  {% endcomment %}
+          
+
+
+
+          {% load static %}
+        
+
+          <style>
+            body {
+              font-family: 'Arial', sans-serif;
+              background-color: #f7f7f7;
+              margin: 0;
+              padding: 0;
+            }
+            
+            table {
+              width: 40%;
+              margin: 50px auto;
+              border-collapse: collapse;
+              box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+              background-color: #fff;
+            }
+            
+            th, td {
+              padding: 15px;
+              text-align: left;
+              border-bottom: 1px solid #ddd;
+            }
+            
+            th {
+              background-color: #4CAF50;
+              color: white;
+            }
+            
+            tr:hover {
+              background-color: #f5f5f5;
+            }
+            
+            tr {
+              transition: background-color 0.3s;
+            }
+            
+            td:first-child {
+              background-color: #f0f0f0;
+              font-weight: bold;
+            }
+      
+              
+          </style>
+    
+      
+      
+   
+    
+
+    <h1> </h1>
+    {% if fetchdata %}
+        
+
+        <table>
+            <tr>
+                <th>name</th>
+                <th>email</th>
+                <th>point</th>
+                
+                
+          
+
+            </tr>
+
+        {% for i in fetchdata %}
+        <tr>
+           
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.point}}</td>
+            
+ 
+            
+        </tr>
+        {% endfor %}
+
+        </table>
+
+    {% else %}
+        <h1> No Data </h1>
+        
+
+    {% endif %}          
+
+<br> <br>
+{% comment %}  {% endcomment %}
+    
+
+{% if x %}
+<h1 > </h1>
+
+
+<table>
+    <tr>
+        <th>name</th>
+        <th>email</th>
+        <th>point</th>
+        
+        
+  
+
+    </tr>
+
+
+<tr>
+
+
+   
+    <td>{{x.name}}</td>
+    <td>{{x.email}}</td>
+    <td>{{x.point}}</td>
+    
+
+    
+</tr>
+
+
+</table>
+
+{% else %}
+<h1>  </h1>
+
+
+{% endif %}          
+
+<br> <br>
+
+
+
+</div>
+
+{% endblock content %}
+
+
+    

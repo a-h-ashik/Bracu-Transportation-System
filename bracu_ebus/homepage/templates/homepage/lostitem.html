@@ -1,0 +1,28 @@
+{% extends "homepage/base.html" %}
+{% load static %}
+{% block title %}Enter complain{% endblock title %}
+
+{% block content %}
+  {% comment %} Add Html codes here {% endcomment %}
+
+
+<p ></p>
+<h2 class="text-center alert-danger"> Report Lost Item </h2>
+<br ></br>
+
+<div class="col-sm-4">
+    <h4 class="text-center alert alert-info"> Add your information </h4>
+
+
+
+
+    <form action="" method="Post" novalidate>
+      {% csrf_token %}
+      {{form.as_p}}
+      <input type="submit" class="btn btn-success" value="Submit">
+    </form>
+
+</div>
+
+<br><br><br><br><br><br><p>
+{% endblock content %}
